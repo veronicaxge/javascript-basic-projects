@@ -1,4 +1,4 @@
-// local reviews data
+// local reviews data; an array with objects. 
 const reviews = [
   {
     id: 1,
@@ -29,3 +29,59 @@ const reviews = [
     text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
   },
 ];
+
+// get all elements for the review card
+const personimg = document.getElementById("person-img");
+const author = document.getElementById("author");
+const job = document.getElementById("job");
+const info = document.getElementById("info");
+
+// get all buttons
+const btnleft = document.querySelector(".prev-btn");
+const btnright = document.querySelector(".next-btn");
+const btnsurpirse = document.querySelector(".random-btn");
+
+// set initial contents on review card
+let a = 0;
+setReviewer(a)
+
+// click right btn
+btnright.addEventListener("click", function(){
+  if(a<3) {
+    a++
+  } else {
+    a = 0
+  }
+  setReviewer(a)
+})
+
+//click left btn
+btnleft.addEventListener("click", function(){
+  if(a>0) {
+    a--
+  } else {
+    a = 3
+  }
+  setReviewer(a)
+})
+
+btnsurpirse.addEventListener("click", function(){
+  let b = getRandomNumber()
+  setReviewer(b)
+})
+
+//helper function 1: set reviewer
+function setReviewer(i){
+  personimg.src = reviews[i].img
+  author.textContent = reviews[i].name
+  job.textContent = reviews[i].job
+  info.textContent = reviews[i].text
+}
+
+//helper function 2: random number generator
+function getRandomNumber(){
+  let randNum = Math.floor(Math.random()* reviews.length)
+  return randNum
+}
+
+
